@@ -22,6 +22,13 @@ export interface AuthState {
   user: AuthUser | null;
 }
 
+// Navigation
+export interface NavItem {
+  label: string;
+  path: string;
+  Icon: React.ComponentType<{ color?: string }>;
+}
+
 // API
 export interface ApiResponse<T> {
   status: "success" | "error";

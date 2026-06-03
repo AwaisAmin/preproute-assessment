@@ -1,59 +1,31 @@
 import { useLocation, useNavigate } from "react-router";
-import {
-  PreprouteLogo,
-  DashboardIcon,
-  TestCreationIcon,
-  TestTrackingIcon,
-} from "../assets/svgs";
-
-const ACTIVE_COLOR = "#384EC7";
-const INACTIVE_COLOR = "#6B7180";
-
-const NAV_ITEMS = [
-  { label: "Dashboard", path: "/dashboard", Icon: DashboardIcon },
-  { label: "Test Creation", path: "/tests/create", Icon: TestCreationIcon },
-  { label: "Test Tracking", path: "/test-tracking", Icon: TestTrackingIcon },
-];
-
-function isActive(path: string, pathname: string) {
-  if (path === "/dashboard") return pathname === "/dashboard";
-  if (path.startsWith("/tests")) return pathname.startsWith("/tests");
-  return pathname === path;
-}
+import { PreprouteLogo } from "../assets/svgs";
+import { PRIMARY_COLOR, INACTIVE_COLOR, NAV_ITEMS } from "../constants";
+import { isNavActive } from "../utils";
 
 export default function Sidebar() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
   return (
-    <aside
-      className="w-55 min-h-screen flex flex-col shrink-0 bg-white"
-      style={{ borderRight: "1px solid #E5E7EB" }}
-    >
-      {/* Logo */}
+    <aside className="w-55 min-h-screen flex flex-col shrink-0 bg-white border-r border-gray-200">
       <div className="pt-6 pb-10 pl-6.5">
         <PreprouteLogo />
       </div>
-
-      {/* Nav items */}
       <nav className="flex flex-col gap-1 px-3">
         {NAV_ITEMS.map(({ label, path, Icon }) => {
-          const active = isActive(path, pathname);
+          const active = isNavActive(path, pathname);
           return (
             <button
               key={path}
               onClick={() => navigate(path)}
-              className="flex items-center gap-3 w-full text-left text-sm rounded-lg cursor-pointer transition-colors outline-none focus:outline-none"
-              style={{
-                padding: "13px 14px",
-                backgroundColor: active ? "#F8FAFF" : "transparent",
-                boxShadow: active ? "inset 4px 0 0 #384EC7" : "none",
-                color: active ? ACTIVE_COLOR : INACTIVE_COLOR,
-                fontWeight: active ? 600 : 500,
-                border: "none",
-              }}
+              className={`flex items-center gap-3 w-full text-left text-sm rounded-lg cursor-pointer transition-colors outline-none focus:outline-none border-0 py-3 px-3.5 ${
+                active
+                  ? "bg-[#F8FAFF] text-[#384EC7] font-semibold shadow-[inset_4px_0_0_#384EC7]"
+                  : "bg-transparent text-[#6B7180] font-medium hover:bg-gray-50"
+              }`}
             >
-              <Icon color={active ? ACTIVE_COLOR : INACTIVE_COLOR} />
+              <Icon color={active ? PRIMARY_COLOR : INACTIVE_COLOR} />
               {label}
             </button>
           );
