@@ -40,7 +40,7 @@ export default function Button({
     <button
       disabled={disabled || loading}
       className={`${base} ${variants[variant]} ${className}`}
-      style={{ padding: "14px 24px" }}
+      style={{ padding: "14px 24px", ...style }}
       {...props}
     >
       {loading ? "Logging in..." : children}

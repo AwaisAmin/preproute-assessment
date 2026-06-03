@@ -1,14 +1,16 @@
 import { forwardRef, type InputHTMLAttributes } from "react";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
   error?: string;
 }
 
 const InputField = forwardRef<HTMLInputElement, Props>(
   ({ label, error, className = "", ...props }, ref) => (
     <div className="flex flex-col gap-1.5">
-      <label className="text-sm font-semibold text-gray-800">{label}</label>
+      {label && (
+        <label className="text-sm font-semibold text-gray-800">{label}</label>
+      )}
       <input
         ref={ref}
         style={{ padding: "12px 16px" }}

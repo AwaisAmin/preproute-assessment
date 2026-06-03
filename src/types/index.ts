@@ -23,10 +23,54 @@ export interface AuthState {
 }
 
 // Navigation
+import type { ComponentType } from "react";
+
 export interface NavItem {
   label: string;
   path: string;
-  Icon: React.ComponentType<{ color?: string }>;
+  Icon: ComponentType<{ color?: string }>;
+}
+
+// Domain
+export interface Subject {
+  id: string;
+  name: string;
+}
+
+export interface Topic {
+  id: string;
+  name: string;
+  subject_id?: string;
+}
+
+export interface SubTopic {
+  id: string;
+  name: string;
+  topic_id?: string;
+}
+
+export interface Test {
+  id: string;
+  name: string;
+  type?: string;
+  subject: Subject | string;
+  topics?: Topic[];
+  sub_topics?: SubTopic[];
+  status: "live" | null;
+  created_at: string;
+  difficulty?: string;
+  total_marks?: number;
+  total_questions?: number;
+  total_time?: number;
+  correct_marks?: number;
+  wrong_marks?: number;
+  unattempt_marks?: number;
+}
+
+export interface TestsState {
+  tests: Test[];
+  loading: boolean;
+  error: string | null;
 }
 
 // API
