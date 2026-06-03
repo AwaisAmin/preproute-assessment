@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($file = \"C:\\\\Users\\\\Lenovo\\\\.claude\\\\projects\\\\d--Dev-preproute-assessment\\\\870c7937-b817-49bb-85d3-20c4f3262ef9.jsonl\"; \\(Get-Content $file\\).Count)",
+      "PowerShell($file = \"C:\\\\Users\\\\Lenovo\\\\.claude\\\\projects\\\\d--Dev-preproute-assessment\\\\870c7937-b817-49bb-85d3-20c4f3262ef9.jsonl\"; $lines = Get-Content $file; $last50 = $lines[-50..-1] | ForEach-Object { $_ } | Out-String; $last50)",
+      "PowerShell($file = \"C:\\\\Users\\\\Lenovo\\\\.claude\\\\projects\\\\d--Dev-preproute-assessment\\\\870c7937-b817-49bb-85d3-20c4f3262ef9.jsonl\"; $lines = Get-Content $file; $lines[-5..-1] | ForEach-Object { $_ | ConvertFrom-Json | Select-Object -ExpandProperty message | Select-Object -ExpandProperty content | ForEach-Object { if \\($_.type -eq \"text\"\\) { $_.text.Substring\\(0, [Math]::Min\\(500, $_.text.Length\\)\\) } } } 2>&1)"
+    ]
+  }
+}
