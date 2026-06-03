@@ -1,3 +1,5 @@
+import UnderDevelopmentPage from "./UnderDevelopmentPage";
+
 export default function PreviewPage() {
-  return <div>Preview & Publish — coming soon</div>;
+  return <UnderDevelopmentPage pageName="Preview & Publish" />;
 }

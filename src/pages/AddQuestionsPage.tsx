@@ -1,3 +1,5 @@
+import UnderDevelopmentPage from "./UnderDevelopmentPage";
+
 export default function AddQuestionsPage() {
-  return <div>Add Questions — coming soon</div>;
+  return <UnderDevelopmentPage pageName="Add Questions" />;
 }

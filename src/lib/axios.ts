@@ -1,15 +1,22 @@
-import axios from "axios";
+import axios, { type AxiosError } from "axios";
 
 const api = axios.create({
-  baseURL: "https://admin-moderator-backend-staging.up.railway.app/api",
+  baseURL: "/api",
 });
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
+  if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
+
+api.interceptors.response.use(
+  (res) => res,
+  (error: AxiosError<{ message?: string }>) => {
+    const message =
+      error.response?.data?.message ?? error.message ?? "Something went wrong";
+    return Promise.reject(new Error(message));
+  },
+);
 
 export default api;

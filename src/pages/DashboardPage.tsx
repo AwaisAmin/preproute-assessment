@@ -1,3 +1,5 @@
+import UnderDevelopmentPage from "./UnderDevelopmentPage";
+
 export default function DashboardPage() {
-  return <div>Dashboard — coming soon</div>;
+  return <UnderDevelopmentPage pageName="Dashboard" />;
 }

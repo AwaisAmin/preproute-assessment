@@ -7,8 +7,14 @@ export interface LoginFormData {
 export interface AuthUser {
   id: string;
   userId: string;
-  name?: string;
-  role?: string;
+  name: string;
+  role: string;
+  subrole: string | null;
+  phone: string;
+  joiningDate: string;
+  endDate: string;
+  lastActive: string;
+  payment: boolean;
 }
 
 export interface AuthState {
@@ -18,7 +24,7 @@ export interface AuthState {
 
 // API
 export interface ApiResponse<T> {
-  success: boolean;
+  status: "success" | "error";
+  message: string;
   data: T;
-  message?: string;
 }

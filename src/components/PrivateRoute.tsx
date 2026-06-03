@@ -1,6 +1,7 @@
-import { Navigate, Outlet } from "react-router";
+import type { ReactNode } from "react";
+import UnauthorizedPage from "../pages/UnauthorizedPage";
 
-export default function PrivateRoute() {
+export default function PrivateRoute({ children }: { children: ReactNode }) {
   const token = localStorage.getItem("token");
-  return token ? <Outlet /> : <Navigate to="/login" replace />;
+  return token ? <>{children}</> : <UnauthorizedPage />;
 }

@@ -21,12 +21,12 @@ export default function LoginPage() {
   const onSubmit = async (data: LoginFormData) => {
     try {
       const res = await api.post("/auth/login", data);
-      console.log("Login res: ", res)
       const { token, user } = res.data.data;
       dispatch(setCredentials({ token, user }));
+      toast.success(res.data.message);
       navigate("/dashboard");
-    } catch {
-      toast.error("Invalid credentials. Please try again.");
+    } catch (err) {
+      toast.error((err as Error).message);
     }
   };
 
