@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
@@ -14,9 +14,13 @@ export default function DashboardPage() {
     (state: RootState) => state.tests,
   );
   const [search, setSearch] = useState("");
+  const fetchInitiated = useRef(false);
 
   useEffect(() => {
-    dispatch(fetchAllTests());
+    if (!fetchInitiated.current) {
+      fetchInitiated.current = true;
+      dispatch(fetchAllTests());
+    }
   }, [dispatch]);
 
   const filtered = tests.filter((t) =>
