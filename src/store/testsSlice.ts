@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { TestsState } from "../types";
+import type { GetTestsParams } from "../api/tests";
 import { getTests, deleteTestById } from "../api/tests";
 
 const initialState: TestsState = {
@@ -8,7 +9,10 @@ const initialState: TestsState = {
   error: null,
 };
 
-export const fetchAllTests = createAsyncThunk("tests/fetchAll", getTests);
+export const fetchAllTests = createAsyncThunk(
+  "tests/fetchAll",
+  (params?: GetTestsParams) => getTests(params),
+);
 
 export const deleteTest = createAsyncThunk("tests/delete", deleteTestById);
 

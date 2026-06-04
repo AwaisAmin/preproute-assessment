@@ -5,3 +5,6 @@ export { default as TestCreationIcon } from "./TestCreationIcon";
 export { default as TestTrackingIcon } from "./TestTrackingIcon";
 export { default as BellIcon } from "./BellIcon";
 export { default as ChevronDownIcon } from "./ChevronDownIcon";
+export { default as GridViewIcon } from "./GridViewIcon";
+export { default as ListViewIcon } from "./ListViewIcon";
+export { default as DotsVerticalIcon } from "./DotsVerticalIcon";
