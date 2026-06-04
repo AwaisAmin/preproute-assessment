@@ -1,15 +1,10 @@
+import Button from "./Button";
+import { getPageNumbers } from "../../utils";
+
 interface Props {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
-}
-
-function getPageNumbers(current: number, total: number): (number | "...")[] {
-  if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
-  if (current <= 4) return [1, 2, 3, 4, 5, "...", total];
-  if (current >= total - 3)
-    return [1, "...", total - 4, total - 3, total - 2, total - 1, total];
-  return [1, "...", current - 1, current, current + 1, "...", total];
 }
 
 export default function Pagination({
@@ -23,13 +18,15 @@ export default function Pagination({
 
   return (
     <div className="flex items-center justify-center gap-1 mt-6">
-      <button
-        onClick={() => onPageChange(currentPage - 1)}
+      <Button
+        variant="secondary"
+        className="w-auto!"
+        style={{ padding: "6px 14px", fontSize: "16px" }}
         disabled={currentPage === 1}
-        className="px-3 py-1.5 text-sm rounded-lg border border-gray-200 disabled:opacity-40 hover:bg-gray-50 transition-colors cursor-pointer outline-none"
+        onClick={() => onPageChange(currentPage - 1)}
       >
         ‹
-      </button>
+      </Button>
 
       {pages.map((page, i) =>
         page === "..." ? (
@@ -51,13 +48,15 @@ export default function Pagination({
         ),
       )}
 
-      <button
-        onClick={() => onPageChange(currentPage + 1)}
+      <Button
+        variant="secondary"
+        className="w-auto!"
+        style={{ padding: "6px 14px", fontSize: "16px" }}
         disabled={currentPage === totalPages}
-        className="px-3 py-1.5 text-sm rounded-lg border border-gray-200 disabled:opacity-40 hover:bg-gray-50 transition-colors cursor-pointer outline-none"
+        onClick={() => onPageChange(currentPage + 1)}
       >
         ›
-      </button>
+      </Button>
     </div>
   );
 }

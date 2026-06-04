@@ -100,7 +100,11 @@ export default function LoginPage() {
                   Forgot password?
                 </Button>
               </div>
-              <Button type="submit" loading={isSubmitting}>
+              <Button
+                type="submit"
+                loading={isSubmitting}
+                loadingText="Logging in..."
+              >
                 Login
               </Button>
             </form>

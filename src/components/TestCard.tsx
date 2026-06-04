@@ -2,37 +2,13 @@ import { useNavigate } from "react-router";
 import type { Test } from "../types";
 import { StatusBadge, DropdownMenu } from "./ui";
 import type { DropdownItem } from "./ui";
+import { EditIcon, EyeIcon, TrashIcon } from "../assets/svgs";
 import { getSubjectName, formatDate } from "../utils";
 
 interface Props {
   test: Test;
   index: number;
   onDelete: (id: string, name: string) => void;
-}
-
-function EditIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-      <path d="M9.5 2.5l2 2-7 7H2.5v-2l7-7z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function EyeIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-      <path d="M1 7s2-4 6-4 6 4 6 4-2 4-6 4-6-4-6-4z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-      <circle cx="7" cy="7" r="1.5" stroke="currentColor" strokeWidth="1.2" />
-    </svg>
-  );
-}
-
-function TrashIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-      <path d="M2 3.5h10M5.5 3.5V2.5h3v1M11 3.5L10.25 12H3.75L3 3.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
 }
 
 export default function TestCard({ test, index, onDelete }: Props) {

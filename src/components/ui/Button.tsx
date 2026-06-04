@@ -2,14 +2,16 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  variant?: "primary" | "secondary" | "link";
+  variant?: "primary" | "secondary" | "danger" | "link";
   loading?: boolean;
+  loadingText?: string;
 }
 
 export default function Button({
   children,
   variant = "primary",
   loading = false,
+  loadingText = "Loading...",
   disabled,
   className = "",
   style,
@@ -23,7 +25,7 @@ export default function Button({
         style={{ background: "none", border: "none", padding: 0, ...style }}
         {...props}
       >
-        {loading ? "Loading..." : children}
+        {loading ? loadingText : children}
       </button>
     );
   }
@@ -34,6 +36,7 @@ export default function Button({
   const variants = {
     primary: "bg-[#4B7BF5] hover:bg-[#3B6AE0] text-white",
     secondary: "bg-white hover:bg-gray-50 text-gray-700 border border-gray-300",
+    danger: "bg-red-500 hover:bg-red-600 text-white",
   };
 
   return (
@@ -43,7 +46,7 @@ export default function Button({
       style={{ padding: "14px 24px", ...style }}
       {...props}
     >
-      {loading ? "Logging in..." : children}
+      {loading ? loadingText : children}
     </button>
   );
 }

@@ -8,3 +8,6 @@ export { default as ChevronDownIcon } from "./ChevronDownIcon";
 export { default as GridViewIcon } from "./GridViewIcon";
 export { default as ListViewIcon } from "./ListViewIcon";
 export { default as DotsVerticalIcon } from "./DotsVerticalIcon";
+export { default as EditIcon } from "./EditIcon";
+export { default as EyeIcon } from "./EyeIcon";
+export { default as TrashIcon } from "./TrashIcon";

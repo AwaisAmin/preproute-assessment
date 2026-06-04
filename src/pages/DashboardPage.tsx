@@ -13,53 +13,18 @@ import {
   Pagination,
 } from "../components/ui";
 import type { DropdownItem } from "../components/ui";
-import { GridViewIcon, ListViewIcon } from "../assets/svgs";
+import {
+  GridViewIcon,
+  ListViewIcon,
+  EditIcon,
+  EyeIcon,
+  TrashIcon,
+} from "../assets/svgs";
 import { getSubjectName, formatDate } from "../utils";
 import { useDebounce } from "../hooks/useDebounce";
 import TestCard from "../components/TestCard";
-
-const PAGE_SIZE = 9;
-type ViewMode = "grid" | "list";
-
-function EditIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-      <path
-        d="M9.5 2.5l2 2-7 7H2.5v-2l7-7z"
-        stroke="currentColor"
-        strokeWidth="1.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-function EyeIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-      <path
-        d="M1 7s2-4 6-4 6 4 6 4-2 4-6 4-6-4-6-4z"
-        stroke="currentColor"
-        strokeWidth="1.2"
-        strokeLinecap="round"
-      />
-      <circle cx="7" cy="7" r="1.5" stroke="currentColor" strokeWidth="1.2" />
-    </svg>
-  );
-}
-function TrashIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-      <path
-        d="M2 3.5h10M5.5 3.5V2.5h3v1M11 3.5L10.25 12H3.75L3 3.5"
-        stroke="currentColor"
-        strokeWidth="1.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
+import { DASHBOARD_PAGE_SIZE } from "../constants";
+import type { ViewMode } from "../types";
 
 export default function DashboardPage() {
   const navigate = useNavigate();
@@ -93,8 +58,11 @@ export default function DashboardPage() {
     setPage(1);
   }, [debouncedSearch]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const totalPages = Math.ceil(tests.length / PAGE_SIZE);
-  const paginatedTests = tests.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const totalPages = Math.ceil(tests.length / DASHBOARD_PAGE_SIZE);
+  const paginatedTests = tests.slice(
+    (page - 1) * DASHBOARD_PAGE_SIZE,
+    page * DASHBOARD_PAGE_SIZE,
+  );
 
   const handleDeleteConfirm = async () => {
     if (!deleteTarget) return;
@@ -220,7 +188,7 @@ export default function DashboardPage() {
             <TestCard
               key={test.id}
               test={test}
-              index={(page - 1) * PAGE_SIZE + i + 1}
+              index={(page - 1) * DASHBOARD_PAGE_SIZE + i + 1}
               onDelete={(id, name) => setDeleteTarget({ id, name })}
             />
           ))}
@@ -249,7 +217,7 @@ export default function DashboardPage() {
                   className="border-b border-gray-50 last:border-0 hover:bg-gray-50 transition-colors"
                 >
                   <td className="px-4 py-3.5 text-gray-400 w-10">
-                    {(page - 1) * PAGE_SIZE + i + 1}
+                    {(page - 1) * DASHBOARD_PAGE_SIZE + i + 1}
                   </td>
                   <td className="px-4 py-3.5 font-semibold text-gray-900">
                     {test.name}

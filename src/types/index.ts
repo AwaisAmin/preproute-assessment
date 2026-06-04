@@ -1,3 +1,5 @@
+import type { ComponentType } from "react";
+
 // Auth
 export interface LoginFormData {
   userId: string;
@@ -23,8 +25,6 @@ export interface AuthState {
 }
 
 // Navigation
-import type { ComponentType } from "react";
-
 export interface NavItem {
   label: string;
   path: string;
@@ -72,6 +72,9 @@ export interface TestsState {
   loading: boolean;
   error: string | null;
 }
+
+// UI
+export type ViewMode = "grid" | "list";
 
 // API
 export interface ApiResponse<T> {
